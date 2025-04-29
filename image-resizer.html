@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resize your images quickly and easily. Resize images online for free with our image resizer tool.">
+    <meta name="keywords" content="image resizer, resize images online, image resize tool, free image resize">
+    <meta name="author" content="Your Name">
+    <title>Image Resizer Tool</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Light Blue */
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e90ff; /* Blue color for headings */
+            font-size: 2.5em;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1e90ff;
+            padding: 15px 0;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style-type: none;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        /* Home Section */
+        #home {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .file-upload {
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        input[type="file"] {
+            font-size: 100px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-btn {
+            padding: 15px 30px;
+            background-color: #1e90ff;
+            color: #fff;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-btn:hover {
+            background-color: #4682b4;
+            transform: scale(1.05);
+        }
+
+        .resize-options {
+            margin: 20px 0;
+        }
+
+        .resize-options input {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px;
+            width: 100px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4682b4;
+        }
+
+        .output img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #1e90ff;
+            border-radius: 5px;
+        }
+
+        /* Download Button Styles */
+        .download-btn {
+            padding: 12px 25px;
+            background-color: #32cd32; /* Green color */
+            color: #fff;
+            font-size: 1.1em;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s, transform 0.3s;
+            display: none;
+        }
+
+        .download-btn:hover {
+            background-color: #228b22; /* Darker green */
+            transform: scale(1.05);
+        }
+
+        /* Advertisement Section */
+        #advertisements {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1e90ff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .resize-options {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .resize-options input {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h1>Resize Your Images Online</h1>
+        <p>Resize images quickly with our easy-to-use tool.</p>
+
+        <div class="file-upload">
+            <button class="upload-btn">Choose File</button>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+
+        <div class="resize-options">
+            <label for="width">Width:</label>
+            <input type="number" id="width" placeholder="Enter width" min="1" />
+            <label for="height">Height:</label>
+            <input type="number" id="height" placeholder="Enter height" min="1" />
+        </div>
+
+        <button onclick="resizeImage()">Resize Image</button>
+
+        <div class="output">
+            <h3>Resized Image:</h3>
+            <img id="outputImage" alt="Resized Image will appear here" />
+        </div>
+
+        <!-- Download Button -->
+        <a id="downloadLink" class="download-btn" href="#" download="resized-image.jpg">Download Resized Image</a>
+    </section>
+
+    <section id="advertisements">
+        <div class="adsense-container">
+            <!-- Google AdSense -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXX" <!-- Replace with your Google AdSense ID -->
+                data-ad-slot="XXXXXX" <!-- Replace with your Google AdSense Ad Slot -->
+                data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Image Resizer Tool. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function resizeImage() {
+            const input = document.getElementById('imageInput');
+            const output = document.getElementById('outputImage');
+            const widthInput = document.getElementById('width');
+            const heightInput = document.getElementById('height');
+            const downloadLink = document.getElementById('downloadLink');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+
+                        const width = widthInput.value ? parseInt(widthInput.value) : img.width;
+                        const height = heightInput.value ? parseInt(heightInput.value) : img.height;
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        output.src = canvas.toDataURL('image/jpeg');
+
+                        // Enable the download link
+                        downloadLink.href = canvas.toDataURL('image/jpeg');
+                        downloadLink.style.display = 'inline-block'; // Show the button
+                    };
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('Please upload an image first.');
+            }
+        }
+    </script>
+
+</body>
+</html>
